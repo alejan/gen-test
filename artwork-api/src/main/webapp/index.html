@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--
+The MIT License (MIT)
+
+Copyright (c) 2015 Los Andes University
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<html ng-app="mainApp">
+    <head>
+        <title>Artwork</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- build:css(<%= meta.src %>) styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.css" type="text/css">
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css(<%= meta.src %>) styles/main.css -->
+        <!-- include: "type": "css", "files": "<%= meta.includeCssFiles %>" -->
+        <!-- /include -->
+        <!-- endbuild -->
+
+        <!-- build:js(<%= meta.src %>) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/lodash/lodash.js"></script>
+        <script src="bower_components/restangular/dist/restangular.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
+        <script src="bower_components/ngstorage/ngStorage.js"></script>
+        <script src="bower_components/checklist-model/checklist-model.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/pdfmake/build/pdfmake.min.js"></script>
+        <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+        <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js(<%= meta.src %>) scripts/scripts.js -->
+        <!-- include: "type": "js", "files": "<%= meta.includeJsFiles %>" -->
+        <script src="src/app.js"></script>
+        <script src="src/modules/directives/js/crud.mod.js"></script>
+        <script src="src/modules/directives/js/crud.dir.js"></script>        
+        <script src="src/modules/login/js/auth.mod.js"></script>
+        <script src="src/modules/login/js/auth.ctrl.js"></script>
+        <script src="src/modules/login/js/auth.dir.js"></script>
+        <script src="src/modules/login/js/auth.svc.js"></script>
+        <script src="src/modules/artwork/artwork.mod.js"></script>
+        <script src="src/modules/artist/artist.mod.js"></script>
+        <script src="src/modules/category/category.mod.js"></script>
+        <script src="src/modules/client/client.mod.js"></script>
+        <script src="src/modules/shoppingCart/shoppingCart.mod.js"></script>
+        <script src="src/modules/order/order.mod.js"></script>
+        <script src="src/modules/sale/sale.mod.js"></script>
+        <script src="src/modules/creditCard/creditCard.mod.js"></script>
+        <script src="src/modules/adress/adress.mod.js"></script>
+        <script src="src/modules/purchase/purchase.mod.js"></script>
+        <script src="src/modules/award/award.mod.js"></script>
+        <script src="src/modules/comment/comment.mod.js"></script>
+        <script src="src/modules/rating/rating.mod.js"></script>
+        <script src="src/modules/item/item.mod.js"></script>
+        <script src="src/modules/artwork/artwork.ctrl.js"></script>
+        <script src="src/modules/artwork/instance/category/edit/artwork.category.edit.ctrl.js"></script>
+        <script src="src/modules/artwork/instance/category/list/artwork.category.list.ctrl.js"></script>
+        <script src="src/modules/artwork/instance/delete/artwork.delete.ctrl.js"></script>
+        <script src="src/modules/artwork/instance/detail/artwork.detail.ctrl.js"></script>
+        <script src="src/modules/artwork/instance/edit/artwork.edit.ctrl.js"></script>
+        <script src="src/modules/artwork/list/artwork.list.ctrl.js"></script>
+        <script src="src/modules/artwork/new/artwork.new.ctrl.js"></script>
+        <script src="src/modules/artist/artist.ctrl.js"></script>
+        <script src="src/modules/artist/instance/delete/artist.delete.ctrl.js"></script>
+        <script src="src/modules/artist/instance/detail/artist.detail.ctrl.js"></script>
+        <script src="src/modules/artist/instance/edit/artist.edit.ctrl.js"></script>
+        <script src="src/modules/artist/list/artist.list.ctrl.js"></script>
+        <script src="src/modules/artist/new/artist.new.ctrl.js"></script>
+        <script src="src/modules/category/category.ctrl.js"></script>
+        <script src="src/modules/category/instance/delete/category.delete.ctrl.js"></script>
+        <script src="src/modules/category/instance/detail/category.detail.ctrl.js"></script>
+        <script src="src/modules/category/instance/edit/category.edit.ctrl.js"></script>
+        <script src="src/modules/category/list/category.list.ctrl.js"></script>
+        <script src="src/modules/category/new/category.new.ctrl.js"></script>
+        <script src="src/modules/client/client.ctrl.js"></script>
+        <script src="src/modules/client/instance/delete/client.delete.ctrl.js"></script>
+        <script src="src/modules/client/instance/detail/client.detail.ctrl.js"></script>
+        <script src="src/modules/client/instance/edit/client.edit.ctrl.js"></script>
+        <script src="src/modules/client/list/client.list.ctrl.js"></script>
+        <script src="src/modules/client/new/client.new.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/shoppingCart.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/instance/item/edit/shoppingCart.item.edit.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/instance/item/list/shoppingCart.item.list.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/instance/delete/shoppingCart.delete.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/instance/detail/shoppingCart.detail.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/instance/edit/shoppingCart.edit.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/list/shoppingCart.list.ctrl.js"></script>
+        <script src="src/modules/shoppingCart/new/shoppingCart.new.ctrl.js"></script>
+        <script src="src/modules/order/order.ctrl.js"></script>
+        <script src="src/modules/order/instance/delete/order.delete.ctrl.js"></script>
+        <script src="src/modules/order/instance/detail/order.detail.ctrl.js"></script>
+        <script src="src/modules/order/instance/edit/order.edit.ctrl.js"></script>
+        <script src="src/modules/order/list/order.list.ctrl.js"></script>
+        <script src="src/modules/order/new/order.new.ctrl.js"></script>
+        <script src="src/modules/sale/sale.ctrl.js"></script>
+        <script src="src/modules/sale/instance/delete/sale.delete.ctrl.js"></script>
+        <script src="src/modules/sale/instance/detail/sale.detail.ctrl.js"></script>
+        <script src="src/modules/sale/instance/edit/sale.edit.ctrl.js"></script>
+        <script src="src/modules/sale/list/sale.list.ctrl.js"></script>
+        <script src="src/modules/sale/new/sale.new.ctrl.js"></script>
+        <script src="src/modules/creditCard/creditCard.ctrl.js"></script>
+        <script src="src/modules/creditCard/instance/delete/creditCard.delete.ctrl.js"></script>
+        <script src="src/modules/creditCard/instance/detail/creditCard.detail.ctrl.js"></script>
+        <script src="src/modules/creditCard/instance/edit/creditCard.edit.ctrl.js"></script>
+        <script src="src/modules/creditCard/list/creditCard.list.ctrl.js"></script>
+        <script src="src/modules/creditCard/new/creditCard.new.ctrl.js"></script>
+        <script src="src/modules/adress/adress.ctrl.js"></script>
+        <script src="src/modules/adress/instance/delete/adress.delete.ctrl.js"></script>
+        <script src="src/modules/adress/instance/detail/adress.detail.ctrl.js"></script>
+        <script src="src/modules/adress/instance/edit/adress.edit.ctrl.js"></script>
+        <script src="src/modules/adress/list/adress.list.ctrl.js"></script>
+        <script src="src/modules/adress/new/adress.new.ctrl.js"></script>
+        <script src="src/modules/purchase/purchase.ctrl.js"></script>
+        <script src="src/modules/purchase/instance/delete/purchase.delete.ctrl.js"></script>
+        <script src="src/modules/purchase/instance/detail/purchase.detail.ctrl.js"></script>
+        <script src="src/modules/purchase/instance/edit/purchase.edit.ctrl.js"></script>
+        <script src="src/modules/purchase/list/purchase.list.ctrl.js"></script>
+        <script src="src/modules/purchase/new/purchase.new.ctrl.js"></script>
+        <script src="src/modules/award/award.ctrl.js"></script>
+        <script src="src/modules/award/instance/delete/award.delete.ctrl.js"></script>
+        <script src="src/modules/award/instance/detail/award.detail.ctrl.js"></script>
+        <script src="src/modules/award/instance/edit/award.edit.ctrl.js"></script>
+        <script src="src/modules/award/list/award.list.ctrl.js"></script>
+        <script src="src/modules/award/new/award.new.ctrl.js"></script>
+        <script src="src/modules/comment/comment.ctrl.js"></script>
+        <script src="src/modules/comment/instance/delete/comment.delete.ctrl.js"></script>
+        <script src="src/modules/comment/instance/detail/comment.detail.ctrl.js"></script>
+        <script src="src/modules/comment/instance/edit/comment.edit.ctrl.js"></script>
+        <script src="src/modules/comment/list/comment.list.ctrl.js"></script>
+        <script src="src/modules/comment/new/comment.new.ctrl.js"></script>
+        <script src="src/modules/rating/rating.ctrl.js"></script>
+        <script src="src/modules/rating/instance/delete/rating.delete.ctrl.js"></script>
+        <script src="src/modules/rating/instance/detail/rating.detail.ctrl.js"></script>
+        <script src="src/modules/rating/instance/edit/rating.edit.ctrl.js"></script>
+        <script src="src/modules/rating/list/rating.list.ctrl.js"></script>
+        <script src="src/modules/rating/new/rating.new.ctrl.js"></script>
+        <script src="src/modules/item/item.ctrl.js"></script>
+        <script src="src/modules/item/instance/delete/item.delete.ctrl.js"></script>
+        <script src="src/modules/item/instance/detail/item.detail.ctrl.js"></script>
+        <script src="src/modules/item/instance/edit/item.edit.ctrl.js"></script>
+        <script src="src/modules/item/list/item.list.ctrl.js"></script>
+        <script src="src/modules/item/new/item.new.ctrl.js"></script>
+        <!-- /include -->
+        <!-- endbuild -->
+
+    </head>
+    <body style="padding-top: 60px;">
+        <div class="container">
+            <div class="col-md-12">
+                <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-bar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href>Artwork</a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="main-bar">
+                            <ul class="nav navbar-nav">
+                                <li><a ui-sref="artistList({page: 1, limit: 15})">Artist</a></li>
+                                <li><a ui-sref="categoryList({page: 1, limit: 15})">Category</a></li>
+                                <li><a ui-sref="clientList({page: 1, limit: 15})">Client</a></li>
+                                <li><a ui-sref="shoppingCartList({page: 1, limit: 15})">Shopping Cart</a></li>
+                                <li><a ui-sref="itemList({page: 1, limit: 15})">Item</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <login-button></login-button>
+                            </ul>
+                        </div> <!-- /.navbar-collapse -->
+                    </div> <!-- /.container-fluid -->
+                </nav>
+            </div>
+            <div ui-view="mainView"></div>
+        </div>
+    </body>
+</html>
